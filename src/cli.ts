@@ -21,9 +21,6 @@ const command = defineCommand({
             default: process.cwd(),
         },
     },
-    subCommands: {
-        build: () => import('./commands/build.ts').then(r => r.default),
-    },
     run({ args }) {
         console.log(args)
     },
