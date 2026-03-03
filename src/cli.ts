@@ -1,4 +1,5 @@
 import { createMain, defineCommand } from 'citty'
+import { commandArgs } from '@/args.ts'
 import { description, name, version } from '../package.json'
 
 const command = defineCommand({
@@ -13,14 +14,7 @@ const command = defineCommand({
     cleanup() {
         console.log('Cleanup')
     },
-    args: {
-        cwd: {
-            type: 'string',
-            description: 'Current working directory',
-            alias: 'c',
-            default: process.cwd(),
-        },
-    },
+    args: commandArgs,
     run({ args }) {
         console.log(args)
     },
