@@ -10,7 +10,16 @@
     "bugs": {
         "url": "https://github.com/lonewolfyx/uni-deps-fix/issues"
     },
-    "keywords": [],
+    "keywords": [
+        "uniapp",
+        "upgrade",
+        "dependencies",
+        "devDependencies",
+        "stable",
+        "cli",
+        "package-manager",
+        "frontend-tooling"
+    ],
     "exports": {
         ".": "./dist/cli.mjs",
         "./package.json": "./package.json"
