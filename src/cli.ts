@@ -1,5 +1,6 @@
 import { createMain, defineCommand } from 'citty'
 import { commandArgs } from '@/args.ts'
+import { resolveConfig } from '@/config.ts'
 import { description, name, version } from '../package.json'
 
 const command = defineCommand({
@@ -15,8 +16,9 @@ const command = defineCommand({
         console.log('Cleanup')
     },
     args: commandArgs,
-    run({ args }) {
-        console.log(args)
+    async run({ args }) {
+        const config = await resolveConfig(args)
+        console.log(config)
     },
 })
 
