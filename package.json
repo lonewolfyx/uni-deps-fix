@@ -1,0 +1,65 @@
+{
+    "name": "uni-deps-fix",
+    "type": "module",
+    "version": "0.0.0",
+    "packageManager": "pnpm@10.28.2",
+    "description": "用于将 UniApp + Vue3 依赖安全升级至最新稳定版本，解决兼容性混乱并确保项目稳定性",
+    "author": "lonewolfyx <https://github.com/lonewolfyx>",
+    "license": "MIT",
+    "homepage": "https://github.com/lonewolfyx/uni-deps-fix",
+    "bugs": {
+        "url": "https://github.com/lonewolfyx/uni-deps-fix/issues"
+    },
+    "keywords": [],
+    "exports": {
+        ".": "./dist/cli.mjs",
+        "./package.json": "./package.json"
+    },
+    "types": "./dist/cli.d.mts",
+    "bin": {
+        "uni-deps-fix": "./bin/cli.js"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "tsdown --watch",
+        "build": "tsdown",
+        "lint": "eslint",
+        "lint:fix": "eslint --fix",
+        "prepublishOnly": "pnpm build",
+        "prepare": "simple-git-hooks"
+    },
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org",
+        "access": "public"
+    },
+    "dependencies": {
+        "@clack/prompts": "^1.0.0",
+        "citty": "^0.2.0",
+        "defu": "^6.1.4",
+        "find-up": "^8.0.0",
+        "glob": "^13.0.1",
+        "jiti": "^2.6.1"
+    },
+    "devDependencies": {
+        "@antfu/eslint-config": "^7.3.0",
+        "@lonewolfyx/tsconfig": "^0.0.6",
+        "@types/node": "^25.2.1",
+        "eslint": "^10.0.0",
+        "lint-staged": "^16.2.7",
+        "picocolors": "^1.1.1",
+        "simple-git-hooks": "^2.13.1",
+        "tsdown": "^0.20.3",
+        "tsdown-preset": "^1.0.3",
+        "tsx": "^4.21.0",
+        "typescript": "^5.9.3"
+    },
+    "simple-git-hooks": {
+        "pre-commit": "npx lint-staged",
+        "commit-msg": "node scripts/verify-commit.js"
+    },
+    "lint-staged": {
+        "*": "eslint --fix"
+    }
+}
