@@ -37,7 +37,8 @@
         "lint": "eslint",
         "lint:fix": "eslint --fix",
         "prepublishOnly": "pnpm build",
-        "prepare": "simple-git-hooks"
+        "prepare": "simple-git-hooks",
+        "test": "vitest"
     },
     "publishConfig": {
         "registry": "https://registry.npmjs.org",
@@ -45,6 +46,7 @@
     },
     "dependencies": {
         "@clack/prompts": "^1.0.0",
+        "c12": "4.0.0-beta.3",
         "citty": "^0.2.0",
         "defu": "^6.1.4",
         "find-up": "^8.0.0",
@@ -62,7 +64,8 @@
         "tsdown": "^0.20.3",
         "tsdown-preset": "^1.0.3",
         "tsx": "^4.21.0",
-        "typescript": "^5.9.3"
+        "typescript": "^5.9.3",
+        "vitest": "^4.0.18"
     },
     "simple-git-hooks": {
         "pre-commit": "npx lint-staged",
