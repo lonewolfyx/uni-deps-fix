@@ -81,7 +81,12 @@ const command = defineCommand({
         s.stop('旧依赖与模板缓存已清理')
 
         s.start('正在通过 @antfu/ni 重新安装依赖，这可能需要一点时间...')
-        await reinstallDependencies(config.cwd)
+        await x('npx', ['-y', '@antfu/ni'], {
+            nodeOptions: {
+                cwd: config.cwd,
+                stdio: 'inherit',
+            },
+        })
         s.stop('依赖重新安装完成')
 
         outro(`已完成 ${updatePlan.changes.length} 项 @dcloudio 依赖更新。`)
