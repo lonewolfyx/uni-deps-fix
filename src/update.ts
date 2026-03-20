@@ -49,8 +49,7 @@ const createDependencyChanges = (
     type: keyof DepsInfo,
 ): DependencyChange[] => {
     return Object.entries(finalDeps)
-        .filter(([, version], index, entries) => {
-            const [name] = entries[index]
+        .filter(([name, version]) => {
             return currentDeps[name] !== version
         })
         .map(([name, targetVersion]) => ({
