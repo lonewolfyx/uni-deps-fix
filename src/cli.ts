@@ -9,15 +9,6 @@ import { downloadStandardUniAppTemplate } from '@/standard.ts'
 import { formatDependencyUpdateSummary, generateDependencyUpdatePlan } from '@/update.ts'
 import { description, name, version } from '../package.json'
 
-const clearDependencyArtifacts = async (cwd: string, templatePath: string) => {
-    await Promise.all([
-        rm(resolve(cwd, 'node_modules'), { recursive: true, force: true }),
-        rm(resolve(cwd, 'pnpm-lock.yaml'), { force: true }),
-    ])
-
-    await rm(resolve(templatePath, 'temp'), { recursive: true, force: true })
-}
-
 const reinstallDependencies = async (cwd: string) => {
     await x('npx', ['-y', '@antfu/ni'], {
         nodeOptions: {
@@ -79,7 +70,14 @@ const command = defineCommand({
         s.stop(`${basename(updatePlan.packageJsonPath)} 已更新`)
 
         s.start('正在清理旧依赖、锁文件和模板缓存...')
-        await clearDependencyArtifacts(config.cwd, config.templatePath || config.cwd)
+
+        await Promise.all([
+            rm(resolve(config.cwd, 'node_modules'), { recursive: true, force: true }),
+            rm(resolve(config.cwd, 'pnpm-lock.yaml'), { force: true }),
+        ])
+
+        await rm(resolve(config.templatePath, 'temp'), { recursive: true, force: true })
+
         s.stop('旧依赖与模板缓存已清理')
 
         s.start('正在通过 @antfu/ni 重新安装依赖，这可能需要一点时间...')
