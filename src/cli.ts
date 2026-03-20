@@ -59,6 +59,7 @@ const command = defineCommand({
 
         if (isCancel(shouldUpdate) || !shouldUpdate) {
             cancel('本次未修改 package.json，也没有执行依赖重装。')
+            await rm(resolve(config.templatePath, 'temp'), { recursive: true, force: true })
             return
         }
 
